@@ -15,6 +15,12 @@ public class EmployeeRepository : IEmployeeRepository
         },
         new Employee()
         {
+            Id = 562,
+            Name = "Anders Hejlsberg",
+            Email = "Anders.Hejlsberg@outlook.com",
+        },
+        new Employee()
+        {
             Id = 62,
             Name = "Kathleen Dollard",
             Email = "k.d@outlook.com",
@@ -59,13 +65,24 @@ public class EmployeeRepository : IEmployeeRepository
 
     public Employee GetById(int id)
     {
-        var employee = employees
-        .SingleOrDefault(e => e.Id == id);
-
+        Employee employee;
+        try
+        {
+             employee = employees
+            .SingleOrDefault(e => e.Id == id);
+            
+        }
+        catch (InvalidOperationException ex)
+        {
+            throw new Exception($"More then one Employee have ID:{id}!", ex);
+        }
         if (employee == null)
-            throw new Exception("employee not found!");
-
+            throw new Exception($"Employee with ID:{id} not found!");
         return employee;
+        //if (employee == null)
+        //throw new Exception("employee not found!");
+
+
     }
 
 
