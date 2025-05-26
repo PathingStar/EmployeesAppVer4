@@ -1,5 +1,6 @@
 ﻿using EmployeesApp.Web.Models;
-using EmployeesApp.Web.Services;
+using EmployeesApp.Domain;
+using EmployeesApp.Application;
 using EmployeesApp.Web.Views.Employees;
 using Microsoft.AspNetCore.Mvc;
 
